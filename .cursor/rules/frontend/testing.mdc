@@ -1,56 +1,20 @@
 ---
-alwaysApply: true
+alwaysApply: false
 ---
 
-# Frontend Testing Rules
+# Frontend Testing Rules (Extension)
 
----
-
-## 1. Testing Philosophy
-
+## 1. UI Behavior Focus
 - Tests must validate user-visible behavior
-- Tests must not depend on implementation details
-- Tests must remain valid after refactoring
-
----
-
-## 2. Test Types
-
-### Unit Tests
-- Test components or hooks in isolation
-- External services must be mocked
-
-### Integration Tests
-- Test interaction between components, hooks, and services
-- Validate real data flow within frontend boundaries
-
----
-
-## 3. Testing Library Rule
-
-- Use a single consistent testing framework (e.g. React Testing Library)
-- Do not mix multiple testing approaches
-
----
-
-## 4. Test File Naming Convention
-
-- Test files must mirror source files:
-  - `Button.tsx` → `Button.test.tsx`
-
----
-
-## 5. UI Behavior Rule
-
-- Tests must focus on visible user behavior
 - Do not test internal state directly
+
+## 2. Mocking Rule
+- All services must be mocked in unit tests
+- External API calls must never be real
+
+## 3. Rendering Focus
 - Prefer interaction-based assertions
+- Validate what the user sees and does
 
----
-
-## 6. Arrange–Act–Assert Rule
-
-All tests must follow:
-- Arrange: setup
-- Act: interaction
-- Assert: expected outcome
+## 4. Library Consistency
+- Use a single frontend testing framework consistently

@@ -1,106 +1,21 @@
 ---
-alwaysApply: true
+alwaysApply: false
 ---
 
-# Backend Testing Rules
+# Backend Testing Rules (Extension)
 
----
-
-## 1. Testing Philosophy
-
-- All backend code must be testable by design.
-- Tests define expected behavior, not implementation details.
-- Tests must validate behavior at the domain and application layers.
-- Tests must remain valid even if internal implementation changes.
-
----
-
-## 2. Test Types
-
-### Unit Tests
-- Test domain and application logic in isolation
-- Must not access database, network, or external services
-- Must use stubs or fakes for all external dependencies
-
-### Integration Tests
-- Test interaction between multiple layers (Application + Infrastructure)
-- May use in-memory or test-specific infrastructure implementations
-- Must not use external production systems
-
----
-
-## 3. Test Structure Rules
-
-### Arrange–Act–Assert (AAA)
-All tests must follow:
-- Arrange: setup state and dependencies
-- Act: execute the behavior
-- Assert: verify observable outcome
-
-### BDD Scenario Discipline
-- Each test must represent exactly one behavior
-- Use Given / When / Then structure when expressing behavior
-- One test = one observable behavior
-- Do not combine multiple behaviors in a single test
-
----
-
-## 4. Stub Rules
-
+## 1. Stub Rules
 - Stubs must implement domain or application interfaces
-- Stubs belong in the Infrastructure layer (test-specific implementations)
-- Stubs must be deterministic and contain no business logic
+- Must be deterministic
+- Must contain no business logic
 
-### Stub Naming Convention
-- Use `InMemoryXRepository`
-- Names must clearly indicate non-production usage
+## 2. Stub Placement
+- Stubs belong in Infrastructure layer (test implementations only)
 
----
+## 3. Naming Convention
+- InMemoryXRepository for persistence stubs
+- FakeXService for service stubs
 
-## 5. Test File Rules
-
-- Use `*.test.ts` or `*.spec.ts`
-- Test file name must mirror the unit under test:
-  - `UserService.ts` → `UserService.test.ts`
-
----
-
-## 6. Testing Library Rule
-
-- A single testing framework must be used across the backend
-- Do not mix multiple testing frameworks within the same layer
-
----
-
-## 7. Test Isolation Rule
-
-- Each test must be independent
-- No shared mutable state between tests
-- Tests must be order-independent
-
----
-
-## 8. TDD Cycle Rule (Critical)
-
-A feature must be implemented as a sequence of independent TDD cycles.
-
-Each cycle must follow:
-
-1. RED: Write exactly one failing test describing a single behavior
-2. GREEN: Write minimal production code to make the test pass
-3. REFACTOR: Improve structure without changing behavior
-
-### Cycle Constraints
-- Each cycle must handle only one behavior
-- Each test belongs to exactly one cycle
-- No cycle may overlap with another cycle
-- Do not add extra behavior during GREEN phase
-- Refactoring must not modify observable behavior
-
----
-
-## 9. Refactor Safety Rule
-
-- Tests must remain unchanged during refactoring
-- Refactoring must not change behavior
-- If a test must change, it indicates a behavior change, not a refactor
+## 4. Backend Focus
+- Emphasize domain and application layer correctness
+- Prefer integration testing between layers when valuable

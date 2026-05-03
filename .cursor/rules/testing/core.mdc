@@ -1,0 +1,52 @@
+---
+alwaysApply: true
+---
+
+# Core Testing Philosophy
+
+## 1. Testing Principle
+All tests must validate observable behavior, not implementation details.
+
+Tests define what the system does, not how it is implemented.
+
+---
+
+## 2. Test Structure Rule (AAA)
+All tests must follow:
+
+- Arrange: setup state
+- Act: execute behavior
+- Assert: verify outcome
+
+---
+
+## 3. Test Isolation Rule
+- Each test must be independent
+- No shared mutable state
+- Tests must be order-independent
+
+---
+
+## 4. Unit vs Integration Definition
+
+### Unit Tests
+- Test logic in isolation
+- External dependencies must be mocked or stubbed
+
+### Integration Tests
+- Test interaction between components or layers
+- May use in-memory or test implementations
+- Must avoid external production systems
+
+---
+
+## 5. BDD Discipline
+- Each test must represent one behavior
+- Use Given / When / Then when expressing scenarios
+- Do not combine multiple behaviors in one test
+
+---
+
+## 6. Refactor Safety Rule
+- Refactoring must not change observable behavior
+- Tests must not be modified during refactor unless behavior changes

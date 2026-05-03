@@ -20,12 +20,9 @@ All code must follow SOLID principles:
 ---
 
 ## 3. Test-Driven Development (TDD)
-All backend features must be designed using TDD principles.
 
-- Tests define expected behavior before implementation.
-- Production code must be derived from tests.
-- Implementation without a failing test is not allowed.
-- Tests must validate observable behavior, not implementation details.
+All backend code must follow the TDD Core Philosophy defined in:
+rules/testing/tdd-core.mdc
 
 ---
 

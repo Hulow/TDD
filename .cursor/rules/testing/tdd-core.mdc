@@ -1,0 +1,60 @@
+---
+alwaysApply: true
+---
+
+# Test-Driven Development (TDD) — Core Philosophy
+
+## 1. Core Principle
+All production code must be derived from tests.
+
+Tests define behavior before implementation.
+
+No production code is valid unless it is required to satisfy a failing test.
+
+---
+
+## 2. TDD Cycle (Invariant Rule)
+
+TDD must always follow this strict cycle:
+
+### RED
+- Write exactly one failing test
+- The test must describe a single observable behavior
+- No production code is allowed
+
+### GREEN
+- Write the minimal code required to pass the test
+- Do not add extra behavior or features
+
+### REFACTOR
+- Improve structure without changing behavior
+- All tests must remain passing
+- No behavioral changes allowed
+
+---
+
+## 3. Cycle Constraints
+
+- One cycle = one behavior
+- One behavior = one test
+- No mixing of multiple behaviors in a single cycle
+- No skipping phases
+- No combining phases
+
+---
+
+## 4. Behavior Definition Rule
+
+A valid test must:
+- describe observable behavior
+- avoid implementation details
+- remain valid after refactoring
+
+---
+
+## 5. Refactor Safety Rule
+
+Refactoring is only valid if:
+- external behavior does not change
+- tests remain unchanged
+- all tests continue passing
