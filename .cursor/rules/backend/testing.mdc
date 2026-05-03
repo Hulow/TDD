@@ -34,7 +34,7 @@ alwaysApply: true
 ---
 
 ## 4. Stub Naming Convention
-- Use `InMemoryXRepository`, `FakeXService`, or `StubXRepository`
+- Use `InMemoryXRepository`
 - Names must clearly indicate they are non-production implementations
 
 ---
