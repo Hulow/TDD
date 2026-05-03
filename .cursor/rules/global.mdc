@@ -42,3 +42,38 @@ Frontend and backend must remain strictly separated:
 ## 6. Design Constraint Rule
 All code must prioritize clarity and correctness over abstraction.
 Avoid unnecessary patterns or complexity unless justified by domain needs.
+
+---
+
+## 7. Rule Priority System (RPS)
+
+When rules conflict, they must be resolved using the following priority order:
+
+### P0 — Global Invariants
+- TDD Core (rules/testing/tdd-core.mdc)
+- SOLID principles
+- BDD behavior rules
+- OOP preference
+- Domain isolation rules
+
+### P1 — Architecture Rules
+- Backend architecture rules
+- Frontend architecture rules
+
+### P2 — Design Patterns (Optional Tools)
+- Backend patterns
+- Frontend patterns
+
+### P3 — Skills / Workflows
+- TDD red/green/refactor skills
+- BDD scenario generation
+- refactor workflows
+
+---
+
+### Rule Resolution Principle
+Higher priority rules ALWAYS override lower priority rules.
+
+If two rules conflict:
+- Follow the rule with the highest priority level
+- Adapt or ignore the lower priority rule
