@@ -7,6 +7,8 @@ alwaysApply: true
 ## 1. Architecture Preference
 Prefer Object-Oriented Programming (OOP) over Functional Programming (FP) for backend design.
 
+---
+
 ## 2. SOLID Principles
 All code must follow SOLID principles:
 - Single Responsibility Principle
@@ -15,15 +17,48 @@ All code must follow SOLID principles:
 - Interface Segregation Principle
 - Dependency Inversion Principle
 
+---
+
 ## 3. Test-Driven Development (TDD)
-All backend features must be developed using TDD principles.
-High-level flow: tests define behavior before implementation.
+All backend features must be designed using TDD principles.
+
+- Tests define expected behavior before implementation.
+- Production code must be derived from tests.
+- Implementation without a failing test is not allowed.
+- Tests must validate observable behavior, not implementation details.
+
+---
 
 ## 4. Behavior-Driven Development (BDD)
-All features must be defined in terms of behavior using Given / When / Then format before implementation.
+All features must be defined using behavior-first thinking:
+
+- Use Given / When / Then structure to describe behavior.
+- Focus on observable outcomes, not internal implementation.
+- Scenarios must represent user or system behavior.
+
+---
 
 ## 5. No Untested Production Code
-Production code must always be backed by tests before being considered complete.
+Production code is only valid if:
+
+- It is covered by automated tests
+- Tests verify behavior, not implementation details
+- All tests pass before a feature is considered complete
+
+---
 
 ## 6. Domain Isolation
-Backend and frontend contexts must never be mixed unless explicitly required.
+Backend and frontend contexts must remain strictly separated unless explicitly required.
+
+- Backend code must not depend on frontend logic
+- Frontend code must not contain backend domain rules
+
+---
+
+## 7. TDD Behavior Constraints
+
+TDD must be respected as a structural constraint:
+
+- Tests must be written before implementation logic
+- Implementation must not exceed the scope defined by tests
+- Refactoring must not change observable behavior
