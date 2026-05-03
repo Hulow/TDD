@@ -5,57 +5,40 @@ alwaysApply: true
 # Global Rules
 
 ## 1. Architecture Preference
-Prefer Object-Oriented Programming (OOP) over Functional Programming (FP) for backend design.
+Prefer Object-Oriented Programming (OOP) for backend design.
+Avoid unnecessary functional decomposition in backend domain logic.
 
 ---
 
 ## 2. SOLID Principles
-All code must follow SOLID principles:
-- Single Responsibility Principle
-- Open/Closed Principle
-- Liskov Substitution Principle
-- Interface Segregation Principle
-- Dependency Inversion Principle
+All backend code must follow SOLID principles.
 
 ---
 
-## 3. Test-Driven Development (TDD)
-
-All backend code must follow the TDD Core Philosophy defined in:
+## 3. Testing Philosophy
+All code must follow the TDD Core defined in:
 rules/testing/tdd-core.mdc
 
----
-
-## 4. Behavior-Driven Development (BDD)
-All features must be defined using behavior-first thinking:
-
-- Use Given / When / Then structure to describe behavior.
-- Focus on observable outcomes, not internal implementation.
-- Scenarios must represent user or system behavior.
+No production code is valid unless it is validated by tests.
 
 ---
 
-## 5. No Untested Production Code
-Production code is only valid if:
+## 4. Behavior-Driven Design
+Features must be described using behavior-first thinking (Given / When / Then).
 
-- It is covered by automated tests
-- Tests verify behavior, not implementation details
-- All tests pass before a feature is considered complete
+Focus on observable outcomes, not implementation details.
 
 ---
 
-## 6. Domain Isolation
-Backend and frontend contexts must remain strictly separated unless explicitly required.
+## 5. Domain Isolation
+Frontend and backend must remain strictly separated:
 
-- Backend code must not depend on frontend logic
-- Frontend code must not contain backend domain rules
+- Backend contains domain logic and business rules
+- Frontend contains only UI and presentation logic
+- No cross-domain logic leakage allowed
 
 ---
 
-## 7. TDD Behavior Constraints
-
-TDD must be respected as a structural constraint:
-
-- Tests must be written before implementation logic
-- Implementation must not exceed the scope defined by tests
-- Refactoring must not change observable behavior
+## 6. Design Constraint Rule
+All code must prioritize clarity and correctness over abstraction.
+Avoid unnecessary patterns or complexity unless justified by domain needs.

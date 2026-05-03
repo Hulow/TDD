@@ -12,29 +12,29 @@ Frontend must follow a feature-based, component-driven architecture.
 ## 2. Layer Responsibilities
 
 ### Pages (Route Layer)
-- Pages compose features and components
-- Pages must NOT contain business logic
-- Pages must NOT perform direct API calls
+- Compose components and features
+- Must not contain business logic
+- Must not call APIs directly
 
 ---
 
 ### Components (UI Layer)
-- Components are responsible for rendering UI
-- Components must be small, reusable, and single-purpose
-- Components must NOT contain data-fetching logic
+- Responsible only for UI rendering
+- Must be reusable and single-purpose
+- Must not perform data fetching
 
 ---
 
 ### Services (Data Layer)
-- All external communication must go through services
-- Services are the ONLY layer allowed to call APIs
-- Services must not contain UI logic
+- Handle all external API communication
+- Must not contain UI logic
+- Provide normalized data to UI layers
 
 ---
 
 ### State Layer
-- State must be centralized per feature or domain
-- Business state must be separated from UI state when possible
+- Manage feature or domain state
+- Separate UI state from business state where applicable
 
 ---
 
@@ -45,15 +45,15 @@ API → Service → State → Component → UI
 
 ---
 
-## 4. Separation of Concerns
+## 4. Separation Rule
 - UI logic stays in components
-- Data fetching stays in services
+- Data access stays in services
 - State orchestration stays in state layer or hooks
 - No cross-layer responsibilities allowed
 
 ---
 
 ## 5. Dependency Rule
-- Components depend on services (never on raw APIs)
-- Services depend on API adapters or clients
-- UI must never depend on external data shape directly
+- UI depends on services only
+- Services depend on API clients/adapters
+- UI must never depend on raw API structures

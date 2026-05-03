@@ -5,63 +5,56 @@ alwaysApply: true
 # Backend Architecture Rules
 
 ## 1. Architectural Style
-The backend must follow Clean Architecture principles with strict separation of layers.
+Backend must follow Clean Architecture with strict separation of concerns.
 
 ---
 
-## 2. Layers and Responsibilities
+## 2. Layer Responsibilities
 
 ### Domain Layer
-- Contains business entities and core business rules
-- Must not depend on any external framework or infrastructure
-- Entities must be pure and framework-agnostic
+- Contains core business logic and entities
+- Must be framework-agnostic
+- Must not depend on any external systems
+
+---
 
 ### Application Layer
-- Contains use cases (application services)
-- Orchestrates domain entities
-- Defines application-specific business flows
+- Orchestrates domain logic (use cases)
+- Defines application workflows
 - Depends only on Domain layer
 
+---
+
 ### Infrastructure Layer
-- Contains external system implementations (DB, APIs, messaging)
-- Implements interfaces defined in Domain or Application layers
+- Implements external systems (DB, APIs, messaging)
+- Implements interfaces defined by Domain/Application
 - Must not contain business logic
 
+---
+
 ### Presentation Layer
-- Handles HTTP/controllers or API entry points
+- Handles API/controllers only
 - Translates requests into application use cases
-- Must be thin and contain no business logic
+- Must remain thin and stateless
 
 ---
 
 ## 3. Dependency Rule
 Dependencies must always point inward:
+
 Presentation → Application → Domain  
 Infrastructure → Domain/Application (via interfaces only)
 
 ---
 
-## 4. Domain Entities
-- Must contain core business logic
-- Must be immutable where possible
-- Must not depend on frameworks, ORMs, or external libraries
+## 4. Domain Integrity Rule
+Domain layer must remain pure:
+- no framework dependencies
+- no I/O logic
+- no infrastructure access
 
 ---
 
-## 5. Application Services
-- Must coordinate domain entities
-- Must not contain infrastructure logic (DB, HTTP, external APIs)
-- Must depend on abstractions (interfaces), not implementations
-
----
-
-## 6. Contracts (Interfaces)
-- All external dependencies must be abstracted via interfaces
-- Interfaces define behavior, not implementation details
-- Implementations live in Infrastructure layer
-
----
-
-## 7. Dependency Injection Rule
-- All dependencies must be injected via constructors or composition root
-- No direct instantiation of infrastructure inside domain/application layers
+## 5. Dependency Injection Rule
+All dependencies must be injected from the composition root.
+No direct instantiation of infrastructure inside Domain or Application layers.

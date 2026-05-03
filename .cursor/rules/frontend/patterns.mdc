@@ -1,50 +1,53 @@
 ---
-alwaysApply: true
+alwaysApply: false
 ---
 
-# Frontend Design Patterns Rules
+# Frontend Design Patterns (Guidelines)
+
+Patterns are optional tools used only when they reduce complexity or improve maintainability.
+
+---
 
 ## 1. Container / Presentational Pattern
+Use when:
+- UI logic and rendering need clear separation
+- components become too complex
 
-- Container components manage state and logic
-- Presentational components handle UI only
-- Do not mix concerns unless component is trivial
+Avoid when:
+- component is simple and self-contained
 
 ---
 
-## 2. Custom Hooks Pattern
+## 2. Custom Hooks
+Use when:
+- logic is reused across multiple components
+- side effects or stateful logic must be encapsulated
 
-- Shared logic must be extracted into hooks
-- Hooks must not render UI
-- Hooks must encapsulate reusable behavior and side effects
+Avoid when:
+- logic is local and simple
 
 ---
 
 ## 3. Adapter Pattern
+Use when:
+- external API data needs normalization
+- API structure is unstable or inconsistent
 
-- All external API data must be normalized via adapters
-- UI must never depend on raw API response structure
-- Data transformation must occur before UI layer
-
----
-
-## 4. Compound Components Pattern
-
-- Use compound components for complex UI systems
-- Components must remain composable and flexible
-- Avoid excessive prop drilling
+Avoid when:
+- API response is already clean and stable
 
 ---
 
-## 5. Composition Over Inheritance
+## 4. Compound Components
+Use when:
+- building complex, composable UI systems (modals, dropdowns, tables)
 
-- Prefer composition for reuse and extension
-- Avoid inheritance-based UI design patterns
+Avoid when:
+- UI is simple or static
 
 ---
 
-## 6. Pattern Selection Rule
-
-- Patterns must only be used when complexity justifies them
-- Do NOT introduce patterns prematurely
-- Prefer simplicity over abstraction unless needed
+## 5. Pattern Selection Rule
+- Prefer simplicity over abstraction
+- Do not introduce patterns by default
+- Apply patterns only when they clearly reduce complexity or duplication
