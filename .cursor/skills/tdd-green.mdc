@@ -1,24 +1,35 @@
 ---
+name: tdd-green
+description: Execute the GREEN phase of TDD by implementing the minimal code required to make a failing test pass
 alwaysApply: false
 ---
 
 # TDD GREEN PHASE SKILL
 
 ## Goal
-Make an existing failing test pass with minimal implementation.
+Make a failing test pass using the smallest possible implementation.
+
+---
 
 ## Input
 - A failing test
 
+---
+
 ## Output
 - Minimal production code that makes the test pass
 
+---
+
 ## Rules
-- Only write production code
-- Do NOT modify tests
-- Do NOT refactor
-- Do NOT add extra features or behaviors
+- Write production code only
+- Do not modify tests
+- Do not refactor
+- Do not introduce additional behavior
+
+---
 
 ## Constraints
-- Implementation must strictly satisfy existing test only
-- No speculative or future-proof code allowed
+- Implementation must satisfy the current test only
+- No speculative or future-proof code
+- Stop immediately once the test passes

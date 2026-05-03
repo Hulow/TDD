@@ -1,26 +1,35 @@
 ---
+name: tdd-red
+description: Execute the RED phase of TDD by writing exactly one failing test that defines a single behavior
 alwaysApply: false
 ---
 
 # TDD RED PHASE SKILL
 
 ## Goal
-Define a single behavior through a failing test.
+Define a single behavior by producing a failing test.
+
+---
 
 ## Input
 - A requirement or behavior description
 
+---
+
 ## Output
-- A single failing test only
+- Exactly one failing test
 - No production code
 
+---
+
 ## Rules
-- Only write tests
-- Do NOT write implementation code
-- Do NOT refactor
-- Do NOT include multiple behaviors
-- One test = one observable behavior
+- Write test code only
+- Do not write implementation
+- Do not refactor
+- One test = one behavior
+
+---
 
 ## Constraints
-- Test must fail before implementation exists
-- Test must describe behavior, not structure
+- Test must fail for the correct reason
+- Test must describe observable behavior, not implementation

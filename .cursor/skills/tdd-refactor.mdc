@@ -1,26 +1,37 @@
 ---
+name: tdd-refactor
+description: Execute the REFACTOR phase of TDD by improving code structure while preserving behavior and keeping all tests passing
 alwaysApply: false
 ---
 
 # TDD REFACTOR PHASE SKILL
 
 ## Goal
-Improve code structure without changing behavior.
+Improve internal structure without changing behavior.
+
+---
 
 ## Input
 - Passing production code
 - Passing tests
 
+---
+
 ## Output
 - Same behavior
-- Improved internal structure
+- Improved structure
+
+---
 
 ## Rules
-- Do NOT modify tests
-- Do NOT change observable behavior
+- Do not modify tests
+- Do not change observable behavior
 - Only structural improvements allowed
 - Changes must be small and incremental
 
+---
+
 ## Constraints
-- All tests must remain passing at all times
-- Refactor must not introduce new behavior
+- All tests must remain passing
+- Run tests after each change
+- Stop if any test fails
