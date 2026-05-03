@@ -1,0 +1,47 @@
+---
+alwaysApply: true
+---
+
+# Frontend Testing Rules
+
+## 1. Testing Philosophy
+- Tests must verify user-visible behavior
+- Avoid testing implementation details
+
+---
+
+## 2. Testing Types
+
+### Unit Tests
+- Test components in isolation
+- Mock services and external dependencies
+
+### Integration Tests
+- Test interaction between components and services
+- Validate data flow and UI updates
+
+---
+
+## 3. Testing Library Rule
+- Use a single consistent testing framework (e.g., React Testing Library or equivalent)
+- Do not mix multiple testing approaches in the same project
+
+---
+
+## 4. Test File Naming Convention
+- Test files must mirror component/service names:
+  - `Button.tsx` → `Button.test.tsx`
+
+---
+
+## 5. UI Behavior Rule
+- Tests must focus on visible behavior, not internal state
+- Prefer testing what the user sees and interacts with
+
+---
+
+## 6. Arrange–Act–Assert Pattern
+- All tests must follow AAA structure:
+  - Arrange setup
+  - Act interaction
+  - Assert outcome

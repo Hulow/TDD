@@ -1,0 +1,59 @@
+---
+alwaysApply: true
+---
+
+# Backend Design Patterns Rules
+
+## 1. Dependency Injection (DI)
+
+- All dependencies must be injected, never instantiated directly inside business logic.
+- Use constructor injection as the default approach.
+- The composition root is responsible for wiring dependencies.
+- Business logic must depend on abstractions (interfaces), not concrete implementations.
+
+---
+
+## 2. Repository Pattern
+
+- All data access must go through repository interfaces.
+- Repositories belong to the Domain or Application layer (as interfaces).
+- Implementations belong to the Infrastructure layer.
+- Domain/Application layers must never access databases directly.
+
+---
+
+## 3. Factory Pattern
+
+- Use factories when object creation logic is complex or conditional.
+- Factories are responsible for encapsulating creation rules.
+- Domain objects should not contain complex instantiation logic.
+
+---
+
+## 4. Strategy Pattern
+
+- Use Strategy when behavior must be interchangeable at runtime.
+- Strategies must implement a shared interface.
+- Selection of strategy must be external to the business logic.
+
+---
+
+## 5. Encapsulation Rule
+
+- Internal implementation details must not leak between layers.
+- Each module must expose only its intended public interface.
+- Avoid exposing internal domain logic through infrastructure or presentation layers.
+
+---
+
+## 6. Composition Over Inheritance
+
+- Prefer composition for behavior reuse.
+- Inheritance is allowed only for strict domain hierarchies where behavior is stable and well-defined.
+
+---
+
+## 7. Pure Domain Rule
+
+- Domain logic must remain free of infrastructure concerns.
+- No database, API, or framework code is allowed inside domain logic.

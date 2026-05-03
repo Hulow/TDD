@@ -1,0 +1,29 @@
+---
+alwaysApply: true
+---
+
+# Global Rules
+
+## 1. Architecture Preference
+Prefer Object-Oriented Programming (OOP) over Functional Programming (FP) for backend design.
+
+## 2. SOLID Principles
+All code must follow SOLID principles:
+- Single Responsibility Principle
+- Open/Closed Principle
+- Liskov Substitution Principle
+- Interface Segregation Principle
+- Dependency Inversion Principle
+
+## 3. Test-Driven Development (TDD)
+All backend features must be developed using TDD principles.
+High-level flow: tests define behavior before implementation.
+
+## 4. Behavior-Driven Development (BDD)
+All features must be defined in terms of behavior using Given / When / Then format before implementation.
+
+## 5. No Untested Production Code
+Production code must always be backed by tests before being considered complete.
+
+## 6. Domain Isolation
+Backend and frontend contexts must never be mixed unless explicitly required.

@@ -1,0 +1,82 @@
+---
+alwaysApply: true
+---
+
+# Backend Testing Rules
+
+## 1. Testing Philosophy
+- All backend code must be testable by design.
+- Tests define expected behavior, not implementation details.
+- Tests must enforce correctness at the domain and application layers.
+
+---
+
+## 2. Unit vs Integration Tests
+
+### Unit Tests
+- Test domain and application logic in isolation
+- Must not access database, network, or external services
+- Must use stubs or fakes for dependencies
+
+### Integration Tests
+- Test interaction between layers (Application + Infrastructure)
+- May use real infrastructure implementations (test DB, in-memory adapters)
+- Must still avoid external production systems
+
+---
+
+## 3. Stub Rule
+
+- Stubs must implement domain or application interfaces.
+- Stubs belong in the Infrastructure layer (test-specific implementations).
+- Stubs must be deterministic and contain no business logic.
+
+---
+
+## 4. Stub Naming Convention
+- Use `InMemoryXRepository`, `FakeXService`, or `StubXRepository`
+- Names must clearly indicate they are non-production implementations
+
+---
+
+## 5. Test File Naming Convention
+- Use `*.test.ts` or `*.spec.ts` depending on framework
+- Test file name must mirror the unit being tested:
+  - `UserService.ts` → `UserService.test.ts`
+
+---
+
+## 6. Testing Library Rule
+- Use a single consistent testing framework across backend
+- No mixing of multiple test frameworks in the same layer
+
+---
+
+## 7. Arrange–Act–Assert Structure
+- All tests must follow AAA pattern:
+  - Arrange: setup state
+  - Act: execute behavior
+  - Assert: verify outcome
+
+---
+
+## 8. Test Isolation Rule
+- Each test must be independent
+- No shared mutable state between tests
+- Tests must be order-independent
+
+---
+
+## 9. BDD Test Scenario Discipline
+
+- Each test must represent exactly one behavior scenario
+- Scenarios must be written in Given / When / Then format
+- One test = one observable behavior
+- Do not combine multiple behaviors in a single test
+
+---
+
+## 10. Refactor Safety Rule
+- Tests must remain unchanged during refactoring
+- Refactoring must not modify behavior
+- If a test changes, it indicates behavior change, not refactory

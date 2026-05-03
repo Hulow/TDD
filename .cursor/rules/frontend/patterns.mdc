@@ -1,0 +1,47 @@
+---
+alwaysApply: true
+---
+
+# Frontend Design Patterns Rules
+
+## 1. Container / Presentational Pattern
+
+- Container components handle state and logic
+- Presentational components handle UI rendering only
+- Do not mix logic and UI in the same component unless trivial
+
+---
+
+## 2. Custom Hooks Pattern
+
+- Shared logic must be extracted into custom hooks
+- Hooks must be reusable and side-effect aware
+- Hooks must not directly manipulate UI
+
+---
+
+## 3. Adapter Pattern
+
+- Use adapters to normalize external API data
+- UI components must never depend on raw API response shapes
+- Data must be transformed before reaching UI layer
+
+---
+
+## 4. Compound Components Pattern
+
+- Use compound components for complex UI systems
+- Components must remain composable and flexible
+- Avoid deeply nested prop drilling
+
+---
+
+## 5. Composition Over Inheritance
+
+- Prefer composition for UI reuse
+- Avoid inheritance-based UI abstractions
+
+---
+
+## 6. Reusability Rule
+- Components must be reusable by default unless explicitly domain-specific

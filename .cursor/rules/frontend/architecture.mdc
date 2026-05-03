@@ -1,0 +1,48 @@
+---
+alwaysApply: true
+---
+
+# Frontend Architecture Rules
+
+## 1. Architectural Style
+Frontend must follow a feature-based, component-driven architecture.
+
+---
+
+## 2. Core Structure
+
+### Components
+- UI must be composed of reusable components
+- Components must be small, focused, and single-purpose
+- Avoid large “god components”
+
+### Pages
+- Pages represent route-level UI composition
+- Pages must assemble components, not contain business logic
+
+### Services
+- All external communication (API calls) must be handled in services
+- Components must never call APIs directly
+
+### State Management
+- State must be managed using a consistent strategy (store or hooks-based)
+- Business state must be separated from UI state where possible
+
+---
+
+## 3. Data Flow Rule
+Data flow must be unidirectional:
+API → Service → State → Component → UI
+
+---
+
+## 4. Separation of Concerns
+- UI rendering logic must stay in components
+- Data fetching must stay in services
+- State orchestration must be separated from presentation logic
+
+---
+
+## 5. Dependency Rule
+- Components must depend on services, not direct API clients
+- Services may depend on external APIs or adapters
