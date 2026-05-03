@@ -1,0 +1,21 @@
+---
+alwaysApply: false
+---
+
+# TDD REFACTOR PHASE SKILL
+
+## Goal
+Improve code structure without changing behavior.
+
+## Preconditions
+- All tests are passing
+
+## Rules
+- Do NOT modify tests
+- Do NOT change behavior
+- Only structural improvements allowed
+- Keep changes small and incremental
+
+## Output
+- Cleaner code
+- All tests still passing

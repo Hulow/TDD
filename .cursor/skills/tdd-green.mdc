@@ -1,0 +1,21 @@
+---
+alwaysApply: false
+---
+
+# TDD GREEN PHASE SKILL
+
+## Goal
+Make an existing failing test pass with minimal implementation.
+
+## Preconditions
+- A failing test already exists
+
+## Rules
+- Only write production code
+- Do NOT modify tests
+- Do NOT refactor
+- Implement minimum code required
+
+## Output
+- Passing test
+- Minimal implementation

@@ -1,0 +1,18 @@
+---
+alwaysApply: false
+---
+
+# TDD RED PHASE SKILL
+
+## Goal
+Write a failing test that defines a single behavior.
+
+## Rules
+- Only write tests
+- Do NOT write production code
+- Do NOT implement logic
+- Do NOT refactor
+- One behavior only per test
+
+## Output
+- A single failing test
