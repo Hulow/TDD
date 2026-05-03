@@ -1,54 +1,77 @@
 ---
 name: testing-core
-description: Core testing philosophy defining behavior-driven testing, AAA structure, isolation rules, unit vs integration tests, and refactor safety
+description: Core testing philosophy enforcing strict BDD format, behavior-driven tests, isolation, and integration rules
 alwaysApply: true
 ---
 
 # Core Testing Philosophy
 
 ## 1. Testing Principle
-All tests must validate behavior, not implementation.
+All tests must validate observable behavior only.
 
-Tests define system behavior, not internal structure.
-
----
-
-## 2. Test Structure (AAA)
-All tests must follow:
-
-- Arrange: setup state
-- Act: execute behavior
-- Assert: verify result
+- Tests define WHAT the system does
+- Tests must not depend on HOW it is implemented
 
 ---
 
-## 3. Test Isolation Rule
+## 2. Test Structure (MANDATORY BDD FORMAT)
+
+All backend and frontend tests MUST follow Given / When / Then structure:
+
+- GIVEN: initial context
+- WHEN: action is executed
+- THEN: observable outcome
+
+❌ Arrange / Act / Assert (AAA) is STRICTLY FORBIDDEN  
+❌ Mixing AAA and BDD is FORBIDDEN  
+
+---
+
+## 3. Behavior Rule
+
+- One test = one behavior
+- Tests must describe a single observable outcome
+- Do not combine multiple behaviors
+
+---
+
+## 4. Test Isolation Rule
+
 - Each test must be independent
 - No shared mutable state
 - Tests must be order-independent
 
 ---
 
-## 4. Unit vs Integration Tests
+## 5. Unit vs Integration Tests
 
 ### Unit Tests
 - Test logic in isolation
-- External dependencies must be mocked or stubbed
+- Dependencies must be mocked or stubbed
 
 ### Integration Tests
-- Test interaction between components or layers
-- May use in-memory or test implementations
-- Must not use external production systems
+- Validate interaction between layers
+- Use real implementations (or in-memory)
+- Must NOT use external production systems
 
 ---
 
-## 5. Behavior-Driven Testing (BDD)
-- Each test must represent a single behavior
-- Use Given / When / Then to describe scenarios when needed
-- Do not combine multiple behaviors in one test
+## 6. Integration Test Placement (MANDATORY)
+
+- Integration tests MUST target the Presentation layer (controllers)
+- Each controller MUST have integration coverage
+- Skipping controller integration tests is FORBIDDEN
 
 ---
 
-## 6. Refactor Safety Rule
+## 7. Test File Policy (STRICT)
+
+- New tests MUST be appended to existing test files
+- Creating new test files is FORBIDDEN unless explicitly required
+
+---
+
+## 8. Refactor Safety Rule
+
 - Refactoring must not change behavior
-- Tests must not be modified unless behavior changes
+- Tests must NOT be modified unless behavior changes

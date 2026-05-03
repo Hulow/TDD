@@ -1,57 +1,76 @@
 ---
 name: tdd-core
-description: Strict Test-Driven Development workflow enforcing Red-Green-Refactor cycle, one behavior per test, and no untested production code
+description: Strict Test-Driven Development workflow enforcing Red-Green-Refactor with zero deviation
 alwaysApply: true
 ---
 
-# Test-Driven Development (TDD) — Core Philosophy
+# TDD — Core Philosophy
 
 ## 1. Core Principle
-All production code must originate from tests.
 
-- Tests define behavior before implementation
-- No production code is valid unless required by a failing test
+All production code MUST originate from a failing test.
+
+❌ Writing production code without a failing test is FORBIDDEN  
 
 ---
 
-## 2. TDD Cycle (Invariant)
-
-TDD must follow this strict sequence:
+## 2. TDD Cycle (STRICT INVARIANT)
 
 ### RED
-- Write exactly one failing test
-- Test must describe a single behavior
+- Write EXACTLY ONE failing test
+- Test must follow Given / When / Then
+- Test must represent ONE behavior
 - No production code allowed
 
+---
+
 ### GREEN
-- Implement the minimal code required to pass the test
-- Do not introduce additional behavior
+- Implement the MINIMUM code required to pass the test
+
+❌ Do NOT:
+- Add extra features
+- Anticipate future requirements
+- Introduce new fields or parameters without test requirement
+
+---
 
 ### REFACTOR
-- Improve structure without changing behavior
-- All tests must remain passing
-- Tests must not be modified
+- Improve structure WITHOUT changing behavior
+
+Constraints:
+- Tests MUST NOT be modified
+- All tests MUST remain passing
 
 ---
 
 ## 3. Cycle Constraints
+
 - One cycle = one behavior
 - One behavior = one test
-- No mixing multiple behaviors
-- No skipping or combining phases
+- No skipping phases
+- No combining phases
 
 ---
 
 ## 4. Behavior Rule
-A valid test must:
-- describe observable behavior
-- avoid implementation details
-- remain valid after refactoring
+
+A valid test MUST:
+- Describe observable behavior
+- Avoid implementation details
+- Remain valid after refactoring
 
 ---
 
-## 5. Refactor Safety Rule
-Refactoring is valid only if:
-- behavior remains unchanged
-- tests remain unchanged
-- all tests continue passing
+## 5. Anti-Overengineering Rule
+
+❌ Adding behavior, fields, or logic not required by the failing test is FORBIDDEN  
+(e.g., adding `customerId` without test requirement)
+
+---
+
+## 6. Refactor Safety Rule
+
+Refactoring is valid ONLY if:
+- Behavior remains unchanged
+- Tests remain unchanged
+- All tests pass

@@ -1,62 +1,94 @@
 ---
 name: backend-architecture
-description: Clean Architecture rules defining domain, application, infrastructure, and presentation layers with strict dependency inversion
+description: Clean Architecture with strict domain integrity and application-owned business logic
 alwaysApply: true
 ---
 
 # Backend Architecture Rules
 
 ## 1. Architectural Style
-Backend must follow Clean Architecture with strict separation of concerns.
+
+Backend MUST follow Clean Architecture.
 
 ---
 
-## 2. Layer Responsibilities
+## 2. Layers
 
-### Domain Layer
-- Contains core business logic and entities
+### Domain Layer (CORE)
+
+Responsibilities:
+- Entities
+- Value Objects
+- Domain Errors
+- Interfaces (contracts)
+
+Rules:
 - Must be framework-agnostic
-- Must not depend on any external systems
+- Must NOT contain I/O logic
+- Must NOT depend on other layers
 
 ---
 
-### Application Layer
-- Orchestrates domain logic (use cases)
-- Defines application workflows
-- Depends only on Domain layer
+### Application Layer (STRICT)
+
+Responsibilities:
+- Use cases
+- Business logic
+
+MANDATORY:
+- Business logic MUST live here
+
+❌ FORBIDDEN:
+- Delegating business logic to services
+- Creating “service layer” for business rules
+- Thin orchestration-only application layer
 
 ---
 
 ### Infrastructure Layer
-- Implements external systems (DB, APIs, messaging)
-- Implements interfaces defined by Domain/Application
-- Must not contain business logic
+
+Responsibilities:
+- DB, APIs, external systems
+- Implements interfaces from Domain/Application
+
+Rules:
+- Must NOT contain business logic
+- Must NOT define domain rules
 
 ---
 
 ### Presentation Layer
-- Handles API/controllers only
-- Translates requests into application use cases
-- Must remain thin and stateless
+
+Responsibilities:
+- Controllers / API endpoints
+
+Rules:
+- Must be thin
+- Must call application layer only
+- Must NOT contain business logic
 
 ---
 
 ## 3. Dependency Rule
+
 Dependencies must always point inward:
 
 Presentation → Application → Domain  
-Infrastructure → Domain/Application (via interfaces only)
+Infrastructure → Domain/Application (via interfaces)
 
 ---
 
 ## 4. Domain Integrity Rule
-Domain layer must remain pure:
-- no framework dependencies
-- no I/O logic
-- no infrastructure access
+
+Domain MUST remain pure:
+
+❌ No frameworks  
+❌ No DB logic  
+❌ No HTTP logic  
 
 ---
 
 ## 5. Dependency Injection Rule
-All dependencies must be injected from the composition root.
-No direct instantiation of infrastructure inside Domain or Application layers.
+
+- All dependencies must be injected
+- No direct instantiation inside Application/Domain

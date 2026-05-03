@@ -1,0 +1,55 @@
+---
+name: test-coverage
+description: Add tests for explicitly specified existing behavior without introducing new behavior
+alwaysApply: false
+---
+
+# TEST COVERAGE SKILL
+
+## Goal
+Add tests that cover explicitly defined existing behavior.
+
+---
+
+## Input
+- A precise description of the behavior to cover
+
+---
+
+## Output
+- One or more tests covering ONLY the specified behavior
+
+---
+
+## Rules
+
+- Tests MUST follow Given / When / Then
+- Tests MUST validate observable behavior only
+
+- Tests MAY pass immediately (existing behavior)
+- Tests MAY fail if behavior is incorrect
+
+---
+
+## STRICT CONSTRAINTS
+
+❌ DO NOT introduce new behavior  
+❌ DO NOT assume missing requirements  
+❌ DO NOT extend scope beyond input  
+❌ DO NOT modify production code  
+
+---
+
+## Scope Rule
+
+- Cover EXACTLY what is described
+- No additional scenarios
+
+---
+
+## Anti-Drift Rule
+
+If behavior is unclear:
+👉 DO NOT guess  
+👉 DO NOT implement  
+👉 Only test what is explicitly stated  

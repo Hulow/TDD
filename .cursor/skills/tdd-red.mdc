@@ -7,12 +7,12 @@ alwaysApply: false
 # TDD RED PHASE SKILL
 
 ## Goal
-Define a single behavior by producing a failing test.
+Define a single behavior by producing exactly one failing test.
 
 ---
 
 ## Input
-- A requirement or behavior description
+- A precise behavior description
 
 ---
 
@@ -23,13 +23,20 @@ Define a single behavior by producing a failing test.
 ---
 
 ## Rules
+
 - Write test code only
 - Do not write implementation
 - Do not refactor
+- Do not modify any existing tests
 - One test = one behavior
 
 ---
 
-## Constraints
-- Test must fail for the correct reason
-- Test must describe observable behavior, not implementation
+## Test Structure (MANDATORY)
+
+All tests MUST follow explicit Given / When / Then structure:
+
+```ts
+// GIVEN ...
+// WHEN ...
+// THEN ...
