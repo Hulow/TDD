@@ -9,40 +9,51 @@ Frontend must follow a feature-based, component-driven architecture.
 
 ---
 
-## 2. Core Structure
+## 2. Layer Responsibilities
 
-### Components
-- UI must be composed of reusable components
-- Components must be small, focused, and single-purpose
-- Avoid large “god components”
+### Pages (Route Layer)
+- Pages compose features and components
+- Pages must NOT contain business logic
+- Pages must NOT perform direct API calls
 
-### Pages
-- Pages represent route-level UI composition
-- Pages must assemble components, not contain business logic
+---
 
-### Services
-- All external communication (API calls) must be handled in services
-- Components must never call APIs directly
+### Components (UI Layer)
+- Components are responsible for rendering UI
+- Components must be small, reusable, and single-purpose
+- Components must NOT contain data-fetching logic
 
-### State Management
-- State must be managed using a consistent strategy (store or hooks-based)
-- Business state must be separated from UI state where possible
+---
+
+### Services (Data Layer)
+- All external communication must go through services
+- Services are the ONLY layer allowed to call APIs
+- Services must not contain UI logic
+
+---
+
+### State Layer
+- State must be centralized per feature or domain
+- Business state must be separated from UI state when possible
 
 ---
 
 ## 3. Data Flow Rule
-Data flow must be unidirectional:
+Strict unidirectional flow:
+
 API → Service → State → Component → UI
 
 ---
 
 ## 4. Separation of Concerns
-- UI rendering logic must stay in components
-- Data fetching must stay in services
-- State orchestration must be separated from presentation logic
+- UI logic stays in components
+- Data fetching stays in services
+- State orchestration stays in state layer or hooks
+- No cross-layer responsibilities allowed
 
 ---
 
 ## 5. Dependency Rule
-- Components must depend on services, not direct API clients
-- Services may depend on external APIs or adapters
+- Components depend on services (never on raw APIs)
+- Services depend on API adapters or clients
+- UI must never depend on external data shape directly
