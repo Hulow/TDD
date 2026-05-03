@@ -7,15 +7,20 @@ alwaysApply: false
 ## Goal
 Improve code structure without changing behavior.
 
-## Preconditions
-- All tests are passing
+## Input
+- Passing production code
+- Passing tests
+
+## Output
+- Same behavior
+- Improved internal structure
 
 ## Rules
 - Do NOT modify tests
-- Do NOT change behavior
+- Do NOT change observable behavior
 - Only structural improvements allowed
-- Keep changes small and incremental
+- Changes must be small and incremental
 
-## Output
-- Cleaner code
-- All tests still passing
+## Constraints
+- All tests must remain passing at all times
+- Refactor must not introduce new behavior

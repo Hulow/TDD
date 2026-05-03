@@ -5,14 +5,22 @@ alwaysApply: false
 # TDD RED PHASE SKILL
 
 ## Goal
-Write a failing test that defines a single behavior.
+Define a single behavior through a failing test.
+
+## Input
+- A requirement or behavior description
+
+## Output
+- A single failing test only
+- No production code
 
 ## Rules
 - Only write tests
-- Do NOT write production code
-- Do NOT implement logic
+- Do NOT write implementation code
 - Do NOT refactor
-- One behavior only per test
+- Do NOT include multiple behaviors
+- One test = one observable behavior
 
-## Output
-- A single failing test
+## Constraints
+- Test must fail before implementation exists
+- Test must describe behavior, not structure

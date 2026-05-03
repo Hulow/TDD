@@ -7,15 +7,18 @@ alwaysApply: false
 ## Goal
 Make an existing failing test pass with minimal implementation.
 
-## Preconditions
-- A failing test already exists
+## Input
+- A failing test
+
+## Output
+- Minimal production code that makes the test pass
 
 ## Rules
 - Only write production code
 - Do NOT modify tests
 - Do NOT refactor
-- Implement minimum code required
+- Do NOT add extra features or behaviors
 
-## Output
-- Passing test
-- Minimal implementation
+## Constraints
+- Implementation must strictly satisfy existing test only
+- No speculative or future-proof code allowed
