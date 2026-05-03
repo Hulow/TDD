@@ -1,4 +1,6 @@
 ---
+name: global-rules
+description: Core system-wide principles including architecture preference, SOLID, TDD, BDD, domain isolation, and rule priority system
 alwaysApply: true
 ---
 

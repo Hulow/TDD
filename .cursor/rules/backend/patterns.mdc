@@ -1,47 +1,59 @@
 ---
+name: backend-patterns
+description: Optional backend design patterns (DI, Repository, Factory, Strategy) used only when they reduce complexity or improve separation of concerns
 alwaysApply: false
 ---
 
 # Backend Design Patterns (Guidelines)
 
-Patterns are optional tools used only when they reduce complexity or duplication.
+Patterns are optional tools. Use only when they clearly reduce complexity, duplication, or coupling.
 
 ---
 
-## 1. Dependency Injection
-Use DI by default to decouple components and improve testability.
+## 1. Dependency Injection (DI)
+Use when:
+- components must be decoupled for testability
+- dependencies need to be interchangeable
 
-Avoid overuse in trivial objects where it adds no value.
+Avoid when:
+- object graph is trivial and adds unnecessary abstraction
 
 ---
 
 ## 2. Repository Pattern
-Use when data access logic must be separated from domain logic.
+Use when:
+- persistence logic must be isolated from domain logic
+- multiple data sources or implementations exist
 
-Avoid when simple CRUD does not benefit from abstraction.
+Avoid when:
+- simple CRUD operations do not benefit from abstraction
 
 ---
 
 ## 3. Factory Pattern
-Use when object creation contains non-trivial or conditional logic.
+Use when:
+- object creation involves complex rules or branching logic
 
-Avoid when constructors are sufficient.
+Avoid when:
+- constructors are sufficient
 
 ---
 
 ## 4. Strategy Pattern
-Use when multiple interchangeable behaviors are required.
+Use when:
+- multiple behaviors must be interchangeable at runtime
 
-Avoid when behavior is stable and does not vary.
+Avoid when:
+- behavior is fixed and does not vary
 
 ---
 
 ## 5. Encapsulation Rule
-Expose only public interfaces between modules.
-Do not leak internal implementation details across layers.
+Modules must expose only their intended public interfaces.
+Internal implementation details must not leak across boundaries.
 
 ---
 
-## 6. Design Principle
-Prefer direct and simple implementations.
-Introduce patterns only when they clearly reduce complexity or duplication.
+## 6. Pattern Selection Rule
+Prefer direct implementations by default.
+Introduce patterns only when they clearly improve clarity, flexibility, or separation of concerns.

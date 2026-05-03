@@ -1,16 +1,18 @@
 ---
+name: frontend-patterns
+description: Optional frontend design patterns (Container, Hooks, Adapter, Compound Components) used only when they reduce complexity or improve separation of concerns
 alwaysApply: false
 ---
 
 # Frontend Design Patterns (Guidelines)
 
-Patterns are optional tools used only when they reduce complexity or improve maintainability.
+Patterns are optional tools. Use only when they clearly improve clarity, reduce complexity, or improve maintainability.
 
 ---
 
 ## 1. Container / Presentational Pattern
 Use when:
-- UI logic and rendering need clear separation
+- logic and UI need clear separation
 - components become too complex
 
 Avoid when:
@@ -20,8 +22,8 @@ Avoid when:
 
 ## 2. Custom Hooks
 Use when:
-- logic is reused across multiple components
-- side effects or stateful logic must be encapsulated
+- logic is reused across components
+- stateful or side-effect logic must be isolated
 
 Avoid when:
 - logic is local and simple
@@ -30,11 +32,11 @@ Avoid when:
 
 ## 3. Adapter Pattern
 Use when:
-- external API data needs normalization
+- external API data must be normalized
 - API structure is unstable or inconsistent
 
 Avoid when:
-- API response is already clean and stable
+- API response is already stable and clean
 
 ---
 
@@ -48,6 +50,6 @@ Avoid when:
 ---
 
 ## 5. Pattern Selection Rule
-- Prefer simplicity over abstraction
-- Do not introduce patterns by default
-- Apply patterns only when they clearly reduce complexity or duplication
+Prefer simplicity over abstraction.
+Do not introduce patterns by default.
+Apply patterns only when they clearly reduce complexity or duplication.

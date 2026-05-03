@@ -1,21 +1,33 @@
 ---
+name: backend-testing
+description: Backend-specific testing rules covering stubs, naming conventions, and layer-focused testing practices
 alwaysApply: false
 ---
 
 # Backend Testing Rules (Extension)
+
+These rules extend the core testing philosophy with backend-specific practices.
+
+---
 
 ## 1. Stub Rules
 - Stubs must implement domain or application interfaces
 - Must be deterministic
 - Must contain no business logic
 
+---
+
 ## 2. Stub Placement
-- Stubs belong in Infrastructure layer (test implementations only)
+- Stubs belong in the Infrastructure layer (test-only implementations)
+
+---
 
 ## 3. Naming Convention
-- InMemoryXRepository for persistence stubs
-- FakeXService for service stubs
+- `InMemoryXRepository` for persistence stubs
+- `FakeXService` for service stubs
 
-## 4. Backend Focus
-- Emphasize domain and application layer correctness
-- Prefer integration testing between layers when valuable
+---
+
+## 4. Backend Testing Focus
+- Prioritize correctness of domain and application layers
+- Prefer integration tests to validate interaction between layers

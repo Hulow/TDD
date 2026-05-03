@@ -1,20 +1,33 @@
 ---
+name: frontend-testing
+description: Frontend-specific testing rules focusing on user-visible behavior, UI interactions, and proper mocking of services
 alwaysApply: false
 ---
 
 # Frontend Testing Rules (Extension)
 
-## 1. UI Behavior Focus
+These rules extend the core testing philosophy with frontend-specific practices.
+
+---
+
+## 1. UI Behavior Rule
 - Tests must validate user-visible behavior
-- Do not test internal state directly
+- Do not test internal state or implementation details
+- Prefer interaction-based assertions (what the user sees and does)
+
+---
 
 ## 2. Mocking Rule
 - All services must be mocked in unit tests
 - External API calls must never be real
 
+---
+
 ## 3. Rendering Focus
-- Prefer interaction-based assertions
-- Validate what the user sees and does
+- Assertions must reflect UI output, not internal logic
+- Validate rendered content and user interactions
+
+---
 
 ## 4. Library Consistency
-- Use a single frontend testing framework consistently
+- Use a single testing framework consistently across the frontend

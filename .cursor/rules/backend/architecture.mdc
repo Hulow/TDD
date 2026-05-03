@@ -1,4 +1,6 @@
 ---
+name: backend-architecture
+description: Clean Architecture rules defining domain, application, infrastructure, and presentation layers with strict dependency inversion
 alwaysApply: true
 ---
 

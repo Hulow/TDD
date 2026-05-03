@@ -1,4 +1,6 @@
 ---
+name: frontend-architecture
+description: Feature-based frontend architecture defining pages, components, services, state management, and strict unidirectional data flow
 alwaysApply: true
 ---
 
@@ -21,20 +23,20 @@ Frontend must follow a feature-based, component-driven architecture.
 ### Components (UI Layer)
 - Responsible only for UI rendering
 - Must be reusable and single-purpose
-- Must not perform data fetching
+- Must not fetch or mutate data directly
 
 ---
 
 ### Services (Data Layer)
-- Handle all external API communication
+- Handle all API communication
+- Provide normalized data to the application
 - Must not contain UI logic
-- Provide normalized data to UI layers
 
 ---
 
 ### State Layer
 - Manage feature or domain state
-- Separate UI state from business state where applicable
+- Separate UI state from business state when applicable
 
 ---
 
@@ -45,15 +47,17 @@ API → Service → State → Component → UI
 
 ---
 
-## 4. Separation Rule
+## 4. Separation of Concerns Rule
+Each layer has a single responsibility:
+
 - UI logic stays in components
 - Data access stays in services
 - State orchestration stays in state layer or hooks
-- No cross-layer responsibilities allowed
+- No layer may bypass another
 
 ---
 
 ## 5. Dependency Rule
-- UI depends on services only
+- UI depends only on services/state
 - Services depend on API clients/adapters
 - UI must never depend on raw API structures
