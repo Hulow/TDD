@@ -52,7 +52,7 @@ All tests must follow:
 - Stubs must be deterministic and contain no business logic
 
 ### Stub Naming Convention
-- Use `InMemoryXRepository`, `FakeXService`, or `StubXRepository`
+- Use `InMemoryXRepository`
 - Names must clearly indicate non-production usage
 
 ---
