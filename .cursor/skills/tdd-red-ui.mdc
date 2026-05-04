@@ -1,0 +1,76 @@
+---
+name: frontend-tdd-red
+description: Execute the RED phase of TDD for frontend by writing exactly one failing test focused on user-visible behavior
+alwaysApply: false
+---
+
+# FRONTEND TDD — RED PHASE SKILL
+
+## Goal
+Define exactly one user-visible behavior by writing a single failing frontend test.
+
+---
+
+## Input
+- A clear UI behavior described from the user's perspective
+
+---
+
+## Output
+- Exactly one failing test
+- No production code
+
+---
+
+## Core Principle
+
+Frontend tests validate **what the user sees and does**, not internal implementation.
+
+---
+
+## Rules
+
+- Write test code only
+- Do NOT write components, hooks, or services
+- Do NOT refactor anything
+- Do NOT modify existing tests
+- Exactly ONE test must be written
+- Test MUST fail
+
+---
+
+## Behavior Rule (STRICT)
+
+The test MUST describe:
+
+- What the user sees (rendered output)
+- OR what the user does (interaction)
+- OR how the UI responds
+
+❌ Forbidden:
+- Testing internal state
+- Testing implementation details
+- Testing hooks directly
+- Testing service logic
+
+---
+
+## Architecture Alignment
+
+The test MUST respect frontend architecture:
+
+- Services MUST be mocked
+- No real API calls allowed
+- UI must be tested through components only
+- Data must come through state or props (never directly from API)
+
+---
+
+## Test Structure (MANDATORY BDD FORMAT)
+
+All tests MUST follow explicit Given / When / Then structure:
+
+```ts
+// GIVEN: initial UI state or mocked service response
+// WHEN: user interaction or render occurs
+// THEN: expected UI output or behavior
