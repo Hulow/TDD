@@ -1,13 +1,13 @@
 ---
 name: tdd-refactor
-description: Execute the REFACTOR phase of TDD by improving code structure while preserving behavior and keeping all tests passing
+description: Execute the REFACTOR phase of TDD by improving internal structure while preserving behavior, enforcing OOP service design, strict dependency injection, and application service boundary rules
 alwaysApply: false
 ---
 
 # TDD REFACTOR PHASE SKILL
 
 ## Goal
-Improve internal structure without changing behavior.
+Improve internal structure WITHOUT changing observable behavior.
 
 ---
 
@@ -19,19 +19,51 @@ Improve internal structure without changing behavior.
 
 ## Output
 - Same behavior
-- Improved structure
+- Improved architecture and code structure
 
 ---
 
-## Rules
-- Do not modify tests
-- Do not change observable behavior
-- Only structural improvements allowed
-- Changes must be small and incremental
+# Core Principle
+
+Refactoring MUST move the code closer to:
+
+✔ Clean Architecture  
+✔ OOP service-based design  
+✔ Explicit dependency injection  
+✔ Domain-driven separation of concerns  
 
 ---
 
-## Constraints
-- All tests must remain passing
-- Run tests after each change
-- Stop if any test fails
+# Strict Rules
+
+## Behavior Preservation Rule (CRITICAL)
+
+- MUST NOT change observable behavior
+- MUST NOT modify tests
+- MUST NOT alter inputs/outputs
+
+---
+
+## Architecture Enforcement Rule (IMPORTANT)
+
+Refactoring MUST preserve or improve:
+
+### ✔ OOP Structure
+- Business logic SHOULD live inside service classes
+- Classes SHOULD represent domain/application responsibilities
+- Functions SHOULD NOT replace service boundaries
+- Services SHOULD encapsulate a single responsibility
+
+---
+
+### ✔ Dependency Injection Rule (STRICT)
+
+- All dependencies MUST be injected via constructor
+- No direct instantiation of infrastructure inside business logic
+- No hidden dependency creation inside classes
+
+✔ GOOD:
+```ts
+class UserService {
+  constructor(private repo: UserRepository) {}
+}

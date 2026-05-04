@@ -6,54 +6,134 @@ alwaysApply: false
 
 # Backend Design Patterns (Guidelines)
 
-Patterns are optional tools. Use only when they clearly reduce complexity, duplication, or coupling.
+Patterns are optional tools. They MUST only be introduced when they clearly reduce complexity, duplication, or coupling.
+
+Default rule: prefer simple, direct implementations.
 
 ---
 
-## 1. Dependency Injection (DI)
-Use when:
-- components must be decoupled for testability
-- dependencies need to be interchangeable
+# 1. Pattern Classification
 
-Avoid when:
-- object graph is trivial and adds unnecessary abstraction
+## Structural Patterns
 
----
+These patterns define how system components are composed and how dependencies are structured.
 
-## 2. Repository Pattern
-Use when:
-- persistence logic must be isolated from domain logic
-- multiple data sources or implementations exist
+* Dependency Injection (DI)
+* Repository Pattern
 
-Avoid when:
-- simple CRUD operations do not benefit from abstraction
+## Behavioral Patterns
+
+These patterns define how objects behave and how responsibilities are distributed at runtime.
+
+* Factory Pattern
+* Strategy Pattern
 
 ---
 
-## 3. Factory Pattern
-Use when:
-- object creation involves complex rules or branching logic
+# 2. Dependency Injection (DI) — Structural Pattern
 
-Avoid when:
-- constructors are sufficient
+## Use when:
 
----
+* Components must be decoupled for testability
+* Dependencies need to be interchangeable
+* You want explicit dependency graphs
 
-## 4. Strategy Pattern
-Use when:
-- multiple behaviors must be interchangeable at runtime
+## Avoid when:
 
-Avoid when:
-- behavior is fixed and does not vary
+* Object graph is trivial
+* It introduces unnecessary abstraction or indirection
 
----
+## Rule:
 
-## 5. Encapsulation Rule
-Modules must expose only their intended public interfaces.
-Internal implementation details must not leak across boundaries.
+DI is the default mechanism for wiring components, but NOT for over-abstracting simple flows.
 
 ---
 
-## 6. Pattern Selection Rule
-Prefer direct implementations by default.
-Introduce patterns only when they clearly improve clarity, flexibility, or separation of concerns.
+# 3. Repository Pattern — Structural Pattern
+
+## Use when:
+
+* Persistence logic must be isolated from domain logic
+* Multiple data sources or storage implementations exist
+* You need a stable abstraction over data access
+
+## Avoid when:
+
+* Simple CRUD operations do not benefit from abstraction
+* The repository becomes a pass-through wrapper over the ORM
+
+## Rule:
+
+Repositories must represent meaningful domain access, not just database delegation.
+
+---
+
+# 4. Factory Pattern — Behavioral Pattern
+
+## Use when:
+
+* Object creation involves complex rules or branching logic
+* Construction logic cannot be cleanly expressed in a constructor
+
+## Avoid when:
+
+* Constructors are sufficient
+* It only adds indirection without simplifying creation logic
+
+## Rule:
+
+Factories exist to simplify *decision-based creation*, not to replace constructors by default.
+
+---
+
+# 5. Strategy Pattern — Behavioral Pattern
+
+## Use when:
+
+* Multiple behaviors must be interchangeable at runtime
+* You need to isolate algorithms or business rules behind a common interface
+
+## Avoid when:
+
+* Behavior is fixed and does not vary
+* Conditional logic is simple and clearer inline
+
+## Rule:
+
+Strategies should eliminate complex branching, not multiply classes unnecessarily.
+
+---
+
+# 6. Encapsulation Rule
+
+Modules MUST expose only their intended public interfaces.
+
+* Internal implementation details MUST NOT leak across boundaries
+* Consumers MUST NOT depend on internal module structure
+
+---
+
+# 7. Pattern Selection Rule (STRICT)
+
+Patterns are NOT defaults.
+
+They MUST be introduced only when:
+
+* They reduce complexity (not increase it)
+* They improve clarity of business or technical intent
+* They reduce coupling in a measurable way
+
+❌ FORBIDDEN:
+
+* Introducing patterns preemptively "just in case"
+* Using patterns to increase abstraction without clear benefit
+* Over-engineering simple workflows
+
+---
+
+# Summary Principle
+
+* Structural patterns shape system architecture (DI, Repository)
+* Behavioral patterns shape runtime behavior (Factory, Strategy)
+
+Always prefer simplicity first. Introduce patterns only when the design becomes harder to understand without them.

@@ -1,0 +1,88 @@
+
+---
+
+# ✅ `.cursor/skills/tdd-red-intg`
+
+```md
+---
+name: tdd-red-intg
+description: Execute RED phase for integration-level TDD validating system behavior across real infrastructure boundaries
+alwaysApply: false
+---
+
+# TDD RED PHASE — INTEGRATION (SYSTEM BEHAVIOR)
+
+## Goal
+Define exactly ONE failing integration test that verifies real system behavior across components.
+
+---
+
+## Input
+- A behavior description
+- System context (API, DB, service flow, etc.)
+
+---
+
+## Output (STRICT)
+- Exactly ONE failing integration test
+- Jest test only
+- No production code
+- Minimal setup required to exercise real system behavior
+
+---
+
+# Scope (STRICT)
+
+This mode is ONLY for:
+
+✔ API endpoints  
+✔ Full application flows  
+✔ Database interactions  
+✔ Infrastructure wiring validation  
+✔ Cross-layer behavior  
+
+---
+
+# Architecture Rules
+
+## Real Implementation Rule
+- MUST use real infrastructure implementations
+- MUST NOT replace system components with stubs unless external third-party systems are involved
+
+## Allowed Real Systems
+- Test database (in-memory or containerized)
+- HTTP server (test instance)
+- Real repositories
+- Real DI wiring
+
+## External Boundary Rule
+- External third-party systems MAY be mocked (e.g. Stripe, email providers)
+
+---
+
+# What is NOT allowed
+
+❌ No mocking of internal architecture  
+❌ No stubbing domain logic  
+❌ No replacing repositories or application services  
+❌ No isolating system into unit-style tests  
+
+---
+
+# Testing Framework
+
+- MUST use Jest
+- MUST test through real entry points (HTTP, service bootstrap, or application layer)
+
+---
+
+# BDD Structure (MANDATORY)
+
+```ts
+describe('given the system is running', () => {
+  describe('when a user performs an action', () => {
+    it('then the system should behave correctly end-to-end', () => {
+      // ONE failing integration test only
+    });
+  });
+});

@@ -1,0 +1,128 @@
+---
+name: tdd-red-unit
+description: Execute RED phase for unit-level TDD using Jest, BDD structure, and domain-driven in-memory stubs implementing infrastructure contracts
+alwaysApply: false
+---
+
+# TDD RED PHASE — UNIT (ISOLATED DOMAIN LOGIC)
+
+## Goal
+Define exactly ONE failing test that describes a single business behavior in isolation.
+
+This phase is STRICTLY about behavior definition — NOT implementation.
+
+---
+
+# Input
+- A precise behavior description
+- Optional domain context
+
+---
+
+# Output (STRICT)
+
+You MUST output:
+
+- Exactly ONE test file
+- Jest test only
+- ONE failing test case only
+
+❌ FORBIDDEN in output:
+- production code
+- implementation logic
+- service implementation
+- helper functions unrelated to test expression
+- solution design
+
+---
+
+# Phase Isolation Rule (CRITICAL)
+
+This is the RED phase of TDD.
+
+You MUST NOT:
+
+❌ implement anything  
+❌ design system structure  
+❌ define business logic  
+❌ write code intended to make the test pass  
+❌ reason about how the system will be built  
+
+You are ONLY allowed to define behavior through a test.
+
+---
+
+# Scope (STRICT)
+
+This mode is ONLY for:
+
+✔ Domain services  
+✔ Application services (interface-level behavior only)  
+✔ Business rules  
+✔ Pure behavior modeling using contracts  
+
+---
+
+# Architecture Rules
+
+## Isolation Rule
+
+- MUST NOT use real infrastructure
+- MUST NOT access DB, HTTP, filesystem, or external systems
+- MUST NOT depend on frameworks or runtime setup
+
+---
+
+## Dependency Rule
+
+- All external dependencies MUST be replaced with stubs/fakes
+- Dependencies MUST be defined via domain contracts (interfaces)
+
+---
+
+# Stub Rule (CRITICAL)
+
+## Default Strategy
+
+- In-memory implementations are the DEFAULT stub mechanism
+- Stubs MUST simulate real behavior (stateful when needed)
+
+## Requirements
+
+- Stubs MUST be deterministic
+- Stubs MUST contain NO business logic
+- Stubs MUST implement domain-defined interfaces
+- Stubs MUST behave like simplified real systems
+
+## Preferred Stubs
+
+✔ InMemoryUserRepository  
+✔ InMemoryOrderRepository  
+✔ FakePaymentGateway (stateful when required)  
+✔ StubEmailService  
+
+## Avoid
+
+❌ jest.fn() mocks for domain dependencies (unless trivial)  
+❌ inline ad-hoc mocks  
+❌ stateless return-only mocks  
+
+---
+
+# Testing Framework
+
+- MUST use Jest
+- MUST use BDD structure (describe / it)
+
+---
+
+# BDD Structure (MANDATORY)
+
+```ts
+describe('given a domain service', () => {
+  describe('when a behavior occurs', () => {
+    it('then it should produce expected result', () => {
+      // ONLY ONE failing test allowed
+    });
+  });
+});

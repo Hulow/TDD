@@ -4,52 +4,154 @@ description: Optional frontend design patterns (Container, Hooks, Adapter, Compo
 alwaysApply: false
 ---
 
-# Frontend Design Patterns (Guidelines)
+# 1. Container / Presentational Pattern
 
-Patterns are optional tools. Use only when they clearly improve clarity, reduce complexity, or improve maintainability.
+## Definition
 
----
+* Container components handle state, logic, and side effects
+* Presentational components handle UI rendering only
 
-## 1. Container / Presentational Pattern
-Use when:
-- logic and UI need clear separation
-- components become too complex
+## Strict Rules
 
-Avoid when:
-- component is simple and self-contained
+❌ Presentational components MUST NOT contain business logic or side effects
+❌ UI components MUST NOT directly manage external state (API calls, global stores)
 
----
+## Use when:
 
-## 2. Custom Hooks
-Use when:
-- logic is reused across components
-- stateful or side-effect logic must be isolated
+* UI and logic need clear separation
+* Component complexity grows beyond simple rendering
 
-Avoid when:
-- logic is local and simple
+## Avoid when:
+
+* Component is small and self-contained
+* Separation creates unnecessary file fragmentation
 
 ---
 
-## 3. Adapter Pattern
-Use when:
-- external API data must be normalized
-- API structure is unstable or inconsistent
+# 2. Custom Hooks Pattern
 
-Avoid when:
-- API response is already stable and clean
+## Definition
+
+* Hooks encapsulate reusable stateful logic and side effects
+* Hooks do NOT render UI
+
+## Strict Rules
+
+❌ Hooks MUST NOT return JSX or render logic
+❌ Hooks MUST NOT contain UI concerns
+
+## Use when:
+
+* Logic is reused across multiple components
+* Side effects (fetching, subscriptions, state logic) must be isolated
+
+## Avoid when:
+
+* Logic is local and simple
+* Extracting hook reduces readability
 
 ---
 
-## 4. Compound Components
-Use when:
-- building complex, composable UI systems (modals, dropdowns, tables)
+# 3. Adapter Pattern
 
-Avoid when:
-- UI is simple or static
+## Definition
+
+* Adapters normalize external API data into internal UI-friendly models
+* UI consumes only normalized data structures
+
+## Strict Rules
+
+❌ UI MUST NOT depend on raw API response structures
+❌ API shapes MUST NOT leak into presentation layer
+
+## Use when:
+
+* External APIs are unstable or inconsistent
+* Data requires transformation before UI consumption
+
+## Avoid when:
+
+* API is already stable, consistent, and UI-ready
 
 ---
 
-## 5. Pattern Selection Rule
-Prefer simplicity over abstraction.
-Do not introduce patterns by default.
-Apply patterns only when they clearly reduce complexity or duplication.
+# 4. Compound Components Pattern
+
+## Definition
+
+* A pattern for building composable UI systems using implicit state sharing
+* Enables flexible composition (e.g., Modal, Dropdown, Tabs)
+
+## Strict Rules
+
+❌ Compound components MUST remain composable (no rigid coupling)
+❌ Internal state sharing MUST NOT break external flexibility
+
+## Use when:
+
+* Building complex, multi-part UI systems
+* Multiple UI parts must work together cohesively
+
+## Avoid when:
+
+* UI is simple or static
+* Composition adds unnecessary complexity
+
+---
+
+# 5. Composition Over Inheritance
+
+## Definition
+
+* UI behavior should be built by composing components, not extending them
+
+## Strict Rules
+
+❌ Inheritance-based UI hierarchies SHOULD NOT be used
+❌ Components SHOULD NOT rely on class inheritance for reuse
+
+## Use when:
+
+* Reusing behavior across multiple UI components
+* Building flexible and reusable UI structures
+
+## Avoid when:
+
+* A single component already satisfies the requirement
+
+---
+
+# 6. Pattern Selection Rule (STRICT)
+
+Patterns are NOT default solutions.
+
+## MUST follow:
+
+* Prefer simple implementations first
+* Introduce patterns ONLY when they reduce real complexity
+* Avoid abstraction without measurable benefit
+
+## FORBIDDEN:
+
+❌ Introducing patterns “just in case”
+❌ Over-engineering simple components
+❌ Adding abstraction without current need
+
+## MUST introduce patterns only when they:
+
+* Reduce complexity
+* Improve maintainability
+* Reduce duplication
+* Clarify separation of concerns
+
+---
+
+# Summary Principle
+
+* Containers separate logic from UI
+* Hooks isolate reusable behavior
+* Adapters isolate external data from UI
+* Compound components enable flexible composition
+* Composition is preferred over inheritance
+
+> Simplicity first. Patterns only when necessary.

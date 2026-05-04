@@ -6,89 +6,165 @@ alwaysApply: true
 
 # Backend Architecture Rules
 
-## 1. Architectural Style
-
-Backend MUST follow Clean Architecture.
+This document combines clear architectural guidance with strict enforcement rules to ensure consistent Clean Architecture implementation.
 
 ---
 
-## 2. Layers
+# 1. Architectural Style
 
-### Domain Layer (CORE)
-
-Responsibilities:
-- Entities
-- Value Objects
-- Domain Errors
-- Interfaces (contracts)
-
-Rules:
-- Must be framework-agnostic
-- Must NOT contain I/O logic
-- Must NOT depend on other layers
+The backend MUST follow **Clean Architecture principles** with strict separation of layers and inward-facing dependencies.
 
 ---
 
-### Application Layer (STRICT)
+# 2. Layers and Responsibilities
 
-Responsibilities:
-- Use cases
-- Business logic
+## 2.1 Domain Layer (CORE)
 
-MANDATORY:
-- Business logic MUST live here
+### Responsibilities
+
+* Contains business entities and core business rules
+* Defines value objects
+* Defines domain errors
+* Defines interfaces (contracts) for external dependencies
+
+### Rules
+
+* Must be framework-agnostic
+* Must NOT depend on any external framework, ORM, or infrastructure
+* Must NOT contain I/O logic (DB, HTTP, filesystem, APIs)
+* Must NOT depend on Application, Infrastructure, or Presentation layers
+* Entities should be pure and ideally immutable where possible
+
+---
+
+## 2.2 Application Layer (STRICT)
+
+### Responsibilities
+
+* Contains use cases (application services)
+* Orchestrates domain entities
+* Defines application-specific business workflows
+* Implements business logic at the application level
+
+### Rules
+
+* Business logic MUST live in this layer (MANDATORY)
+* Must depend ONLY on Domain layer
+* Must NOT contain infrastructure logic (DB, HTTP, external APIs)
+* Must NOT delegate business rules to a “service layer” outside this layer
+* Must NOT be a thin orchestration-only layer (it must contain real business logic)
 
 ❌ FORBIDDEN:
-- Delegating business logic to services
-- Creating “service layer” for business rules
-- Thin orchestration-only application layer
+
+* Creating a separate “service layer” for business rules
+* Moving business logic into infrastructure services
+* Treating Application layer as simple pass-through orchestration only
 
 ---
 
-### Infrastructure Layer
+## 2.3 Infrastructure Layer
 
-Responsibilities:
-- DB, APIs, external systems
-- Implements interfaces from Domain/Application
+### Responsibilities
 
-Rules:
-- Must NOT contain business logic
-- Must NOT define domain rules
+* Implements external systems (databases, APIs, messaging, file storage)
+* Provides concrete implementations of interfaces defined in Domain/Application layers
 
----
+### Rules
 
-### Presentation Layer
-
-Responsibilities:
-- Controllers / API endpoints
-
-Rules:
-- Must be thin
-- Must call application layer only
-- Must NOT contain business logic
+* Must NOT contain business logic
+* Must NOT define domain rules
+* Must depend on Domain/Application ONLY through interfaces
+* Must be replaceable without affecting core business logic
 
 ---
 
-## 3. Dependency Rule
+## 2.4 Presentation Layer
 
-Dependencies must always point inward:
+### Responsibilities
 
-Presentation → Application → Domain  
-Infrastructure → Domain/Application (via interfaces)
+* Handles HTTP controllers / API endpoints / transport logic
+* Translates requests into Application layer use cases
+
+### Rules
+
+* Must be thin
+* Must NOT contain business logic
+* Must NOT access infrastructure directly
+* Must call Application layer ONLY
+
+❌ FORBIDDEN:
+
+* Implementing business rules in controllers
+* Directly interacting with database or external services
 
 ---
 
-## 4. Domain Integrity Rule
+# 3. Dependency Rule (STRICT)
 
-Domain MUST remain pure:
+Dependencies MUST always point inward:
 
-❌ No frameworks  
-❌ No DB logic  
-❌ No HTTP logic  
+Presentation → Application → Domain
+Infrastructure → Domain/Application (via interfaces only)
+
+❌ OUTWARD DEPENDENCY IS FORBIDDEN
 
 ---
 
-## 5. Dependency Injection Rule
+# 4. Domain Integrity Rule (STRICT)
 
-- All dependencies must be injected
-- No direct instantiation inside Application/Domain
+The Domain layer MUST remain pure and isolated.
+
+❌ FORBIDDEN in Domain:
+
+* Framework dependencies
+* Database logic
+* HTTP / API logic
+* External service calls
+
+✔ Allowed:
+
+* Business rules
+* Validation logic
+* Domain behaviors
+
+---
+
+# 5. Application Layer Rule (BUSINESS OWNERSHIP)
+
+The Application layer is the **primary home of business logic orchestration and rules**.
+
+* It defines how business processes are executed
+* It coordinates domain entities
+* It enforces use-case-specific rules
+
+❌ FORBIDDEN:
+
+* Moving business logic into services outside Application layer
+* Delegating core decisions to infrastructure
+
+---
+
+# 6. Contracts (Interfaces)
+
+* All external dependencies MUST be abstracted via interfaces
+* Interfaces define behavior, not implementation
+* Implementations live ONLY in Infrastructure layer
+
+---
+
+# 7. Dependency Injection Rule (STRICT)
+
+* All dependencies MUST be injected (constructor or composition root)
+* No direct instantiation of infrastructure inside Domain or Application layers
+* No hidden coupling between layers
+
+---
+
+# 8. Summary Principle
+
+> Domain defines the business.
+> Application executes the business.
+> Infrastructure supports the business.
+> Presentation exposes the business.
+
+Everything else is a violation of architecture boundaries.
