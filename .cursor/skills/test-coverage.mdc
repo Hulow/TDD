@@ -47,6 +47,13 @@ Add tests that cover explicitly defined existing behavior.
 
 ---
 
+# Testing Framework
+
+- MUST use Jest
+- MUST use BDD structure (describe / it)
+
+---
+
 ## Anti-Drift Rule
 
 If behavior is unclear:
